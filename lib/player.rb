@@ -1,15 +1,15 @@
 class Player
 		attr_accessor :name , :life_points, :damages
-
+#attributs
 		def initialize(name_to_save)
 			@life_points = 10
 			@name = name_to_save
 		end
-
+#afficher l'état d'un joueur
 		def show_state
 			puts "#{@name} a #{@life_points} points de vie"
 		end
-
+#subir une attaque
 		def gets_damage(damages_to_save)
 			@damages = damages_to_save.to_i
 			@life_points = @life_points - @damages
@@ -17,20 +17,20 @@ class Player
 				puts "#{@name} a été tué! :( \n\ "
 			end
 		end
-
+#attaquer
 		def attacks(victime)
 			puts "#{@name} attaque #{victime.name}"
 			number_damages = compute_damage
 			puts "Le joueur lui inflige #{number_damages} points de dommages \n\ "
 			victime.gets_damage(number_damages)
 		end
-
+#définir un nombre de damage aléatoire
 		 def compute_damage
     		return rand(1..6)
   		end
 
 end
-
+#définition d'un joueur humain
 class HumanPlayer < Player
 		attr_accessor :weapon_level
 
@@ -43,11 +43,11 @@ class HumanPlayer < Player
 		def show_state
 			puts "#{@name} a #{@life_points} points de vie et une arme de niveau #{@weapon_level}"
 		end
-
+#augmenter les dommages causés
 		def compute_damage
     		rand(1..6) * @weapon_level
   		end
-
+#chercher une nouvelle arme
   		def search_weapon
   			 new_weapon = rand(1..6)
   			 puts "Tu as trouvé une arme de niveau #{new_weapon} !"
@@ -58,7 +58,7 @@ class HumanPlayer < Player
   			 	puts "M@*#$... elle n'est pas mieux que ton arme actuelle..."
   			 end
   		end
-
+#chercher un pack de points de vie
   		def search_health_pack
   			rand(1..6)
   			result = rand(1..6)
